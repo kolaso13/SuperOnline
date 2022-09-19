@@ -18,7 +18,16 @@ public abstract class Producto {
         this.peso = peso;
     }
 
-    public Producto(Scanner in){}
+    public Producto(Scanner in){
+        while(true){
+            try{
+                codigo = in.nextInt();
+                break;
+            }catch(Exception e){
+                System.out.println("El codigo introducido es erroneo");
+            }
+        }
+    }
 
     public Producto(){}
 

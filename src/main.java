@@ -2,6 +2,8 @@ import Clases.Producto;
 
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class main {
     public static void main (String[] args) {
         System.out.printf(
@@ -20,28 +22,45 @@ public class main {
                         "                tecla:6  - Guardar inventario                       \n" +
                         "                tecla:0  - Terminar                                 \n" +
                         "====================================================================\n");
-        System.out.println("Opción? ");
-        Scanner sc = new Scanner(System.in);
-        String number = sc.nextLine();
-        do{
 
-            System.out.println("Opción? ");
-        }while(number!="0");
 
-        switch (number) {
+        int opcion = LeerOpcion(6);
+
+
+
+        switch (opcion) {
             default:
                 System.out.println("Saliendo...");
                 break;
-            case "1":
+            case 1:
                 System.out.printf(
                         "   [[Cargando productos...]]\n" +
                                 "   [[...Productos cargados en inventario!]]\n");
                 System.out.println("(pulsa 0 para continuar...");
-                String continuar = sc.nextLine();
                 break;
             }
 
 
+    }
+    public static int LeerOpcion(int max){
+        Scanner sc = new Scanner(System.in);
+        String number;
+        
+        while(true) {
+            System.out.println("Opción? ");
+            number = sc.nextLine();
+            boolean isNumeric = (number != null && number.matches("[0-9]+"));
+
+            if(parseInt(number) <= 0 || parseInt(number) > max){
+                System.out.println("Valor no valido, Debe estar entre las opciones");
+            } else if (!isNumeric) {
+                System.out.println("Valor no valido, Debe ser un numero");
+            }
+            else{
+                break;
+            }
+        }
+        return parseInt(number);
     }
     private void MostrarMenuInventario(){}
     private int mostrarMenuActualizarInventario(){return 0;}
