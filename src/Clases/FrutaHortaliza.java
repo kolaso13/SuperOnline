@@ -13,6 +13,14 @@ public class FrutaHortaliza extends Perecedero{
 
     public FrutaHortaliza(Scanner in) {
         super(in);
+        while(true){
+            try{
+                origen = String.valueOf(in.nextInt());
+                break;
+            }catch(Exception e){
+                System.out.println("El origen introducido es erroneo");
+            }
+        }
     }
     public String volcar(){return "";}
     public void imprimir(){}

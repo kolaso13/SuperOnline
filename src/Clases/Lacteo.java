@@ -13,6 +13,14 @@ public class Lacteo extends Perecedero{
 
     public Lacteo(Scanner in) {
         super(in);
+        while(true){
+            try{
+                lote = String.valueOf(in.nextInt());
+                break;
+            }catch(Exception e){
+                System.out.println("El lote introducido es erroneo");
+            }
+        }
     }
     public String volcar(){return "";}
 

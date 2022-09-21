@@ -10,7 +10,19 @@ public class Otros extends NoPerecedero{
         super(codigo, descr, precio, cantidad, peso);
         this.categoria = Categoria;
     }
-    public void Otros(Scanner in){}
+
+    public Otros(Scanner in) {
+        super(in);
+        while(true){
+            try{
+                categoria = String.valueOf(in.nextInt());
+                break;
+            }catch(Exception e){
+                System.out.println("La categoria introducida es erronea");
+            }
+        }
+    }
+
     public String volcar(){return "";}
     public void imprimir(){}
 }

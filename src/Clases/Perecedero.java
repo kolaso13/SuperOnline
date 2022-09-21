@@ -12,7 +12,17 @@ public abstract class Perecedero extends Producto implements Enviable {
         this.fechaad = fecha;
     }
 
-    public Perecedero (Scanner in){super(in);}
+    public Perecedero (Scanner in){
+        super(in);
+        while(true){
+            try{
+                fechaad = String.valueOf(in.nextInt());
+                break;
+            }catch(Exception e){
+                System.out.println("La fecha introducida es erronea");
+            }
+        }
+    }
 
     @Override
     public double tarifaEnvio() {
@@ -21,7 +31,10 @@ public abstract class Perecedero extends Producto implements Enviable {
 
     public void imprimir(){}
     public String volcar(){return "";}
-    public void imprimirEnvio(){}
+    public void imprimirEnvio(){
+        System.out.println("Tarifa de envio: "+tarifaEnvio()+"Precio: "+getPrecio());
+
+    }
 
     @Override
     public boolean envioFragil() {

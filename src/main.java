@@ -1,71 +1,146 @@
+import Clases.Inventario;
 import Clases.Producto;
 
 import java.util.Scanner;
 
-import static java.lang.Integer.parseInt;
 
 public class main {
-    public static void main (String[] args) {
-        System.out.printf(
-                "====================================================================\n" +
-                        "=                    SISTEMA DE GESTIÓN DE SUPER-ON-LINE           =\n" +
-                        "====================================================================\n" +
-                        "\n" +
-                        "====================================================================\n" +
-                        "=                MENU PRINCIPAL - GESTION DE INVENTARIO            =\n" +
-                        "====================================================================\n" +
-                        "                tecla:1  - Cargar productos                         \n" +
-                        "                tecla:2  - Mostrar inventario                       \n" +
-                        "                tecla:3  - Actualizar existencias                   \n" +
-                        "                tecla:4  - Añadir nuevo producto                    \n" +
-                        "                tecla:5  - Mostrar productos enviables              \n" +
-                        "                tecla:6  - Guardar inventario                       \n" +
-                        "                tecla:0  - Terminar                                 \n" +
-                        "====================================================================\n");
+
+    static Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        int opcion = 1;
+
+        System.out.println("========================================================================");
+        System.out.println("=                 SISTEMA DE GESTION DE SUPER-ON-LINE                  =");
+        System.out.println("========================================================================");
+        System.out.println();
+        System.out.println();
 
 
-        int opcion = LeerOpcion(6);
-
-
-
-        switch (opcion) {
-            default:
-                System.out.println("Saliendo...");
-                break;
-            case 1:
-                System.out.printf(
-                        "   [[Cargando productos...]]\n" +
-                                "   [[...Productos cargados en inventario!]]\n");
-                System.out.println("(pulsa 0 para continuar...");
-                break;
-            }
-
-
-    }
-    public static int LeerOpcion(int max){
-        Scanner sc = new Scanner(System.in);
-        String number;
-        
-        while(true) {
+        while (opcion != 0) {
+            mostrarMenuInventario();
             System.out.println("Opción? ");
-            number = sc.nextLine();
-            boolean isNumeric = (number != null && number.matches("[0-9]+"));
-
-            if(parseInt(number) <= 0 || parseInt(number) > max){
-                System.out.println("Valor no valido, Debe estar entre las opciones");
-            } else if (!isNumeric) {
-                System.out.println("Valor no valido, Debe ser un numero");
-            }
-            else{
-                break;
+            opcion = leerOpcion(7); // hay 6 acciones principales sobre el inventario + terminar la aplicaciÃ³n
+            switch(opcion) {
+                case 0:	System.out.println("Termina la aplicación");
+                    System.exit(0);
+                case 1: Inventario.cargarProductos();
+                    pause();
+                    break; // cargar productos
+                case 2: Inventario.mostrarProductos();
+                    pause();
+                    break;
+                case 3:     //actualizar la cantidad de un producto en almancÃ©n
+                    Producto p;
+                    while (opcion!=0) {
+                        Inventario.mostrarProductos();
+                        System.out.println("0 - Finalizar actualizaciÃ³n del inventario");
+                        System.out.println("Elige el nÃºmero del producto a actualizar, tecla:x (/= 0):");
+                        System.out.println("OpciÃ³n? ");
+                        opcion = leerOpcion(Inventario.tamaño()+1); //se han mostrado todos los articulos (talla) + opcion de salida
+                        if (opcion!=0) {
+                            p = Inventario.getProducto(opcion);  //el mismo producto
+                            System.out.println("Producto elegido: "+p.getNombre()+", existencias: "+p.getCantidad());
+                            System.out.println("Elige la nueva cantidad:");
+                            int cant = in.nextInt();
+                            in.nextLine();
+                            p.setCantidad(cant);   //actualiza el mismo producto del inventario
+                            //NO ES NECESARIA LA ACTUALIZACIÃ“N DESDE INVENTARIO!!
+                            System.out.println("Producto actualizado: "+p.getNombre()+", Nueva cantidad en almacÃ©n: "+p.getCantidad());
+                            System.out.println();
+                            pause();
+                        }
+                    } opcion=1; break;
+                case 4: 	//aÃ±adir un nuevo producto al almancÃ©n
+                    while (opcion!=0) {
+                        mostrarMenuAddNuevoProducto();
+                        System.out.println("Opción? ");
+                        opcion = leerOpcion(6); // 5 clases de productos y salida del menÃº
+                        if (opcion!=0) {
+                            Producto P = nuevoProducto(opcion);
+                            Inventario.addNuevoProducto(P);
+                            System.out.println("Producto añadido, número "+Inventario.tamaño());
+                            Inventario.getProducto(Inventario.tamaño()).imprimir(); //imprime el Ãºltimo producto incluido
+                            System.out.println();
+                            System.out.println();
+                            pause();
+                        }
+                    } opcion=1; break;
+                case 5: Inventario.mostrarProductosEnviables();
+                    pause();
+                    break;
+                case 6: Inventario.volcarProductos();
+                    pause();
+                    break;
             }
         }
-        return parseInt(number);
     }
-    private void MostrarMenuInventario(){}
-    private int mostrarMenuActualizarInventario(){return 0;}
-    private void mostrarMenuAddNuevoProducto(){}
-    private int leerOpcion(int max){return 0;}
-    private Producto nuevoProducto(){return null;}
-    private void pause(){}
+
+    public static void mostrarMenuInventario() {// ver productos del super ordenados
+        System.out.println("====================================================================");
+        System.out.println("=            MENU PRINCIPAL - GESTIÃ“N DE INVENTARIO                =");
+        System.out.println("====================================================================");
+        System.out.println("            tecla:1   - Cargar productos");
+        System.out.println("            tecla:2   - Mostrar inventario");
+        System.out.println("            tecla:3   - Actualizar existencias");
+        System.out.println("            tecla:4   - AÃ±adir nuevo producto");
+        System.out.println("            tecla:5   - Mostrar productos enviables");
+        System.out.println("            tecla:6   - Guardar inventario");
+        System.out.println("            tecla:0   - Terminar");
+        System.out.println("====================================================================");
+    }
+
+
+    public static void mostrarMenuAddNuevoProducto() {// ver productos y escoger uno
+        System.out.println("====================================================");
+        System.out.println("=   Elige el tipo de producto que quieres aÃ±adir:  =");
+        System.out.println("====================================================");
+        System.out.println("         tecla:1 - Lacteo");
+        System.out.println("         tecla:2 - Frutas u hortalizas");
+        System.out.println("         tecla:3 - Bebidas");
+        System.out.println("         tecla:4 - Herramientas");
+        System.out.println("         tecla:5 - Otros");
+        System.out.println("         tecla:0 - Cancelar");
+        System.out.println("====================================================");
+    }
+
+    public static Producto nuevoProducto (int n) {
+        Scanner es = new Scanner (System.in);
+        Producto P;
+        switch(n) {
+            case 1: P = new Lacteo(es);break;
+            case 2: P = new FrutaHortaliza(es);break;
+            case 3: P = new Bebida(es);break;
+            case 4: P = new Herramienta(es);break;
+            default: P = new Otros(es);break;
+        }
+        return P;
+    }
+
+    private static void pause() {
+        System.out.println("(pulsa 0 para continuar...");
+        leerOpcion(1);
+    }
+
+
+    private static int leerOpcion(int max) {
+        boolean terminar = false;
+        int n = 0;
+        while (!terminar) {
+            try {
+                n = in.nextInt();
+                in.nextLine();
+                if (n>=max || n<0) {
+                    throw new Exception();
+                }
+                terminar = true;
+            } catch (Exception e) {
+                System.out.println("Opción incorrecta! elije de nuevo");
+                in.nextLine();
+            }
+        }
+        return n;
+    }
 }

@@ -59,7 +59,9 @@ public abstract class Producto {
 
     public void imprimir(){}
 
-    public void imprimirEnvio(){}
+    public void imprimirEnvio(){
+        System.out.println("Codigo: "+codigo+" Nombre: "+nombre+" Peso: "+peso+"IVA: "+iva);
+    }
 
     public String volcar(){return "";}
 

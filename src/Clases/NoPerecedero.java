@@ -7,7 +7,9 @@ public abstract class NoPerecedero extends Producto{
         super(codigo, descr, precio, cantidad, peso);
     }
 
-    public NoPerecedero(Scanner in){}
+    public NoPerecedero(Scanner in) {
+        super(in);
+    }
 
     public void imprimir(){}
 }

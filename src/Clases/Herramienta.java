@@ -10,7 +10,10 @@ public class Herramienta extends NoPerecedero implements Enviable {
     public Herramienta(int codigo, String descr, double precio, int cantidad, double peso) {
         super(codigo, descr, precio, cantidad, peso);
     }
-    public void Herramienta(Scanner in){}
+
+    public Herramienta(Scanner in) {
+        super(in);
+    }
 
     @Override
     public boolean envioFragil() {
