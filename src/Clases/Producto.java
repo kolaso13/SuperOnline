@@ -35,7 +35,7 @@ public abstract class Producto {
         System.out.println("Introduce el nombre:");
         while (true){
             try{
-                nombre = in.nextLine();
+                nombre = String.valueOf(in.nextInt());
                 break;
             }catch (Exception e){
                 System.out.println("El nombre introducido es erroneo, introduce uno correcto");

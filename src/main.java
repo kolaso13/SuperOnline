@@ -61,7 +61,7 @@ public class main {
                             Producto P = nuevoProducto(opcion);
                             Inventario.addNuevoProducto(P);
                             System.out.println("Producto añadido, número "+Inventario.tamaño());
-                            Inventario.getProducto(Inventario.tamaño()).imprimir(); //imprime el Ãºltimo producto incluido
+                            Inventario.getProducto(Inventario.tamaño()-1).imprimir(); //imprime el Ãºltimo producto incluido
                             System.out.println();
                             System.out.println();
                             pause();
