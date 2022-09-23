@@ -11,5 +11,5 @@ public abstract class NoPerecedero extends Producto{
         super(in);
     }
 
-    public void imprimir(){}
+    public void imprimir(){super.imprimir();}
 }

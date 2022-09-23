@@ -13,16 +13,21 @@ public class Otros extends NoPerecedero{
 
     public Otros(Scanner in) {
         super(in);
+        System.out.println("Introduce la categoría:");
         while(true){
             try{
                 categoria = String.valueOf(in.nextInt());
                 break;
             }catch(Exception e){
                 System.out.println("La categoria introducida es erronea");
+                in.nextLine();
             }
         }
     }
 
     public String volcar(){return "";}
-    public void imprimir(){}
+    public void imprimir(){
+        super.imprimir();
+        System.out.println("Categoría: "+ categoria);
+    }
 }

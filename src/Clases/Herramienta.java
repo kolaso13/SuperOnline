@@ -23,7 +23,7 @@ public class Herramienta extends NoPerecedero implements Enviable {
     public double tarifaEnvio() {
         return Enviable.super.tarifaEnvio();
     }
-    public String volcar(){return "";}
-    public void imprimir(){}
-    public void imprimirEnvio(){}
+    public String volcar(){return super.volcar();}
+    public void imprimir(){super.imprimir();}
+    public void imprimirEnvio(){super.imprimirEnvio();}
 }

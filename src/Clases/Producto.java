@@ -19,12 +19,64 @@ public abstract class Producto {
     }
 
     public Producto(Scanner in){
+        //Scanner codigo
+        System.out.println("Introduce el código:");
         while(true){
             try{
                 codigo = in.nextInt();
                 break;
             }catch(Exception e){
-                System.out.println("El codigo introducido es erroneo");
+                System.out.println("El codigo introducido es erroneo, introduce uno correcto");
+                in.nextLine();
+            }
+        }
+
+        //Scanner nombre
+        System.out.println("Introduce el nombre:");
+        while (true){
+            try{
+                nombre = in.nextLine();
+                break;
+            }catch (Exception e){
+                System.out.println("El nombre introducido es erroneo, introduce uno correcto");
+                in.nextLine();
+            }
+        }
+
+        //Scanner precio
+        System.out.println("Introduce el precio:");
+        while (true){
+            try{
+                precio = in.nextDouble();
+                break;
+            }catch (Exception e){
+                System.out.println("El precio introducido es erroneo, introduce uno correcto");
+                in.nextLine();
+            }
+        }
+
+        //Scanner cantidad
+        System.out.println("Introduce la cantidad:");
+        while (true){
+            try{
+                cantidad = in.nextInt();
+                break;
+            }catch (Exception e){
+                System.out.println("La cantidad introducida es erronea, introduce una correcta");
+                in.nextLine();
+            }
+
+        }
+
+        //Scanner peso
+        System.out.println("Introduce el peso:");
+        while (true){
+            try{
+                peso = in.nextDouble();
+                break;
+            }catch (Exception e){
+                System.out.println("El peso introducido es erroneo, introduce uno correcto");
+                in.nextLine();
             }
         }
     }
@@ -55,12 +107,14 @@ public abstract class Producto {
 
     public void setPeso(double peso) {this.peso = peso;}
 
-    public double calcularPrecioIVA(){return 0;}
+    public double calcularPrecioIVA(){return (precio * getIva()) + precio;}
 
-    public void imprimir(){}
+    public void imprimir(){
+        System.out.println("Producto número: "+codigo+", Nombre del producto: "+nombre+", Precio del producto: "+precio+", Cantidad: "+cantidad+", Peso: "+peso);
+    }
 
     public void imprimirEnvio(){
-        System.out.println("Codigo: "+codigo+" Nombre: "+nombre+" Peso: "+peso+"IVA: "+iva);
+        System.out.println("Codigo: "+codigo+" Nombre: "+nombre+" Peso: "+peso+"IVA: "+calcularPrecioIVA());
     }
 
     public String volcar(){return "";}

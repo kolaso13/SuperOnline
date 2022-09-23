@@ -1,5 +1,4 @@
-import Clases.Inventario;
-import Clases.Producto;
+import Clases.*;
 
 import java.util.Scanner;
 
@@ -71,7 +70,7 @@ public class main {
                 case 5: Inventario.mostrarProductosEnviables();
                     pause();
                     break;
-                case 6: Inventario.volcarProductos();
+                case 6: Inventario.guardarProductos();
                     pause();
                     break;
             }

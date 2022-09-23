@@ -13,21 +13,28 @@ public class FrutaHortaliza extends Perecedero{
 
     public FrutaHortaliza(Scanner in) {
         super(in);
+        System.out.println("Introduce el origen:");
         while(true){
             try{
                 origen = String.valueOf(in.nextInt());
                 break;
             }catch(Exception e){
                 System.out.println("El origen introducido es erroneo");
+                in.nextLine();
             }
         }
     }
     public String volcar(){return "";}
-    public void imprimir(){}
+    public void imprimir(){
+        super.imprimir();
+        System.out.println("Origen: "+origen);
+    }
 
     @Override
     public boolean envioFragil() {
         return super.envioFragil();
     }
-    public void calcularPrecioEnvio(){}
+    public void calcularPrecioEnvio(){
+        Double precioEnvio = super.tarifaEnvio();
+    }
 }

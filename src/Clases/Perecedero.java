@@ -14,12 +14,15 @@ public abstract class Perecedero extends Producto implements Enviable {
 
     public Perecedero (Scanner in){
         super(in);
+        System.out.println("Introduce la fecha de caducidad:");
         while(true){
             try{
-                fechaad = String.valueOf(in.nextInt());
+                Scanner fecha = new Scanner(System.in);
+                fechaad = fecha.nextLine();
                 break;
             }catch(Exception e){
-                System.out.println("La fecha introducida es erronea");
+                System.out.println("La fecha introducida es erronea, introduce una valida");
+                in.nextInt();
             }
         }
     }
@@ -29,11 +32,14 @@ public abstract class Perecedero extends Producto implements Enviable {
         return Enviable.super.tarifaEnvio();
     }
 
-    public void imprimir(){}
+    public void imprimir(){
+        super.imprimir();
+        System.out.println("fecha de caducidad: "+ fechaad);
+    }
     public String volcar(){return "";}
-    public void imprimirEnvio(){
-        System.out.println("Tarifa de envio: "+tarifaEnvio()+"Precio: "+getPrecio());
 
+    public void imprimirEnvio(){
+        super.imprimirEnvio();
     }
 
     @Override
