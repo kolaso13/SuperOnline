@@ -70,7 +70,7 @@ public class Inventario {
 
     public static Producto getProducto(int id){
         getInstance();
-        return ListaProductos.get(id);
+        return ListaProductos.get(id-1);
     }
     public static void actualizarCantidad(int codigo, int cant){
         getInstance();

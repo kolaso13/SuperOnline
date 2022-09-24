@@ -23,6 +23,7 @@ public abstract class Producto {
         System.out.println("Introduce el código:");
         while(true){
             try{
+//                codigo = Inventario.tamaño()+1;
                 codigo = in.nextInt();
                 break;
             }catch(Exception e){

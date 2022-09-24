@@ -24,7 +24,7 @@ public class Lacteo extends Perecedero{
             }
         }
     }
-    public String volcar(){return "";}
+    public String volcar(){return super.volcar();}
 
     @Override
     public boolean envioFragil() {
