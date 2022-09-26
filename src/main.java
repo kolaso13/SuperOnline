@@ -35,9 +35,9 @@ public class main {
                     Producto p;
                     while (opcion!=0) {
                         Inventario.mostrarProductos();
-                        System.out.println("0 - Finalizar actualizaciÃ³n del inventario");
+                        System.out.println("0 - Finalizar actualización del inventario");
                         System.out.println("Elige el número del producto a actualizar, tecla:x (/= 0):");
-                        System.out.println("OpciÃ³n? ");
+                        System.out.println("Opciòn? ");
                         opcion = leerOpcion(Inventario.tamaño()+1); //se han mostrado todos los articulos (talla) + opcion de salida
                         if (opcion!=0) {
                             p = Inventario.getProducto(opcion);  //el mismo producto
