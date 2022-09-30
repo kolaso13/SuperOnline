@@ -12,3 +12,4 @@
 12 Piña 1.5 345 0.9 1/05/13 Costa FrutaHortaliza
 13 TV 1010.0 50 45.0 PLASMA-46 Otros
 14 Lima 12.0 12 12.0 Herramienta
+15 Yogu 23.34 2 23.2 23/12/2500 2 Lacteo

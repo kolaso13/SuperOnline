@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class FrutaHortaliza extends Perecedero{
     private String origen;
     private double VALOR_IVA = 0.16;
+    private final boolean Fragil = false;
 
     public FrutaHortaliza(int codigo, String descr, double precio, int cantidad, double peso, String fecha, String origen) {
         super(codigo, descr, precio, cantidad, peso, fecha);
         this.origen = origen;
+        setIva(VALOR_IVA);
     }
 
     public FrutaHortaliza(Scanner in) {
@@ -23,8 +25,9 @@ public class FrutaHortaliza extends Perecedero{
                 in.nextLine();
             }
         }
+        setIva(VALOR_IVA);
     }
-    public String volcar(){return super.volcar();}
+    public String volcar(){return super.volcar() + " " + origen + " FrutaHortaliza";}
     public void imprimir(){
         super.imprimir();
         System.out.println(", Origen: "+origen);
@@ -32,7 +35,7 @@ public class FrutaHortaliza extends Perecedero{
 
     @Override
     public boolean envioFragil() {
-        return super.envioFragil();
+        return Fragil;
     }
     public void calcularPrecioEnvio(){
         Double precioEnvio = super.tarifaEnvio();

@@ -1,9 +1,11 @@
 package Clases;
 
 import Interfaces.Enviable;
-import sun.rmi.runtime.Log;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -11,6 +13,7 @@ public class Inventario {
     private static ArrayList<Producto> ListaProductos ;
     private static String ficheroInventario;
     private static int ultimoCodigo;
+    private static Path pathArchivo = Path.of("src/file/productos.txt");
     private static Inventario instance;
     private Inventario(){
         ListaProductos = new ArrayList<Producto>();
@@ -26,9 +29,11 @@ public class Inventario {
     public static void cargarProductos(){
         getInstance();
         String [] productosEntrantes;
+        File archivo = null;
         try {
-        FileReader fr = new FileReader("D:\\productos.txt");
-        BufferedReader br = new BufferedReader(fr);
+            archivo = new File(pathArchivo.toUri());
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
             String linea;
 
             while ((linea = br.readLine()) != null){
@@ -94,7 +99,20 @@ public class Inventario {
             }
         }catch (Exception e){}
     }
-    public static void guardarProductos(){}
+    public static void guardarProductos(){
+        try {
+            Files.writeString(pathArchivo, "");
+            ListaProductos.forEach(producto -> {
+                try {
+                    Files.writeString(pathArchivo, producto.volcar() + System.lineSeparator(), StandardOpenOption.APPEND);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void addNuevoProducto(Producto tipo){
         getInstance();
@@ -125,7 +143,12 @@ public class Inventario {
         getInstance();
         ListaProductos.forEach(producto -> {
             if(producto != null &&  producto instanceof Enviable){
-                System.out.println("Código: "+producto.getCodigo()+", Nombre: "+producto.getNombre()+", Peso:  "+producto.getPeso()+",Precio: "+producto.getPrecio()+", Cantidad: "+producto.getCantidad());
+                if(!((Enviable) producto).envioFragil()){
+                    System.out.printf("Id: %d, Nombre: %s, peso: %.1f, IVA (%.2f%s), tarifa de envío: %.2f, PRECIO-TOTAL: %.2f\n", producto.getCodigo(), producto.getNombre(), producto.getPeso(), producto.getIva(), new String(new char[] { 37 }), ((Enviable) producto).tarifaEnvio(), (producto.calcularPrecioIVA() + ((Enviable) producto).tarifaEnvio()));
+                }else{
+                    System.out.printf("Id: %d, Nombre: %s, peso: %.1f, IVA (%.2f%s), tarifa de envío: %.2f, Producto frágil, PRECIO-TOTAL: %.2f\n", producto.getCodigo(), producto.getNombre(), producto.getPeso(), producto.getIva(), new String(new char[] { 37 }), ((Enviable) producto).tarifaEnvio(), (producto.calcularPrecioIVA() + ((Enviable) producto).tarifaEnvio()));
+                }
+
             }
         });
     }
@@ -133,10 +156,5 @@ public class Inventario {
     public static void eliminarProductos(int id){
         getInstance();
         ListaProductos.remove(id);
-    }
-
-
-    public Iterator iterator() {
-        return ListaProductos.iterator();
     }
 }

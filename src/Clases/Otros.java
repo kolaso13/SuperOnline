@@ -9,6 +9,7 @@ public class Otros extends NoPerecedero{
     public Otros(int codigo, String descr, double precio, int cantidad, double peso, String Categoria) {
         super(codigo, descr, precio, cantidad, peso);
         this.categoria = Categoria;
+        setIva(VALOR_IVA);
     }
 
     public Otros(Scanner in) {
@@ -23,9 +24,10 @@ public class Otros extends NoPerecedero{
                 in.nextLine();
             }
         }
+        setIva(VALOR_IVA);
     }
 
-    public String volcar(){return super.volcar();}
+    public String volcar(){return super.volcar() + categoria + " Otros";}
     public void imprimir(){
         super.imprimir();
         System.out.println(", Categoría: "+ categoria);

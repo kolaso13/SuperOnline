@@ -108,6 +108,6 @@ public abstract class Producto {
         System.out.println("Codigo: "+codigo+" Nombre: "+nombre+" Peso: "+peso+"IVA: "+calcularPrecioIVA());
     }
 
-    public String volcar(){return "";}
+    public String volcar(){return codigo + " " + nombre + " " + precio + " " + cantidad + " " + peso + " ";}
 
 }
