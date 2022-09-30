@@ -27,7 +27,7 @@ public class FrutaHortaliza extends Perecedero{
     public String volcar(){return super.volcar();}
     public void imprimir(){
         super.imprimir();
-        System.out.println("Origen: "+origen);
+        System.out.println(", Origen: "+origen);
     }
 
     @Override

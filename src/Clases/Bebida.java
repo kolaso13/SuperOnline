@@ -27,7 +27,7 @@ public class Bebida extends Perecedero{
     public String volcar(){return super.volcar();}
     public void imprimir(){
         super.imprimir();
-        System.out.printf("Graduación: "+graduacion);
+        System.out.println(", Graduación: "+graduacion);
     }
 
     @Override

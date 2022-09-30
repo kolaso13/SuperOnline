@@ -28,13 +28,12 @@ public abstract class Perecedero extends Producto implements Enviable {
     }
 
     @Override
-    public double tarifaEnvio() {
-        return Enviable.super.tarifaEnvio();
+    public double tarifaEnvio() {return 0.00;
     }
 
     public void imprimir(){
         super.imprimir();
-        System.out.println("fecha de caducidad: "+ fechaad);
+        System.out.print(" (Producto perecedero: "+ fechaad+")");
     }
     public String volcar(){return super.volcar();}
 
@@ -44,6 +43,6 @@ public abstract class Perecedero extends Producto implements Enviable {
 
     @Override
     public boolean envioFragil() {
-        return Enviable.super.envioFragil();
+        return false;
     }
 }

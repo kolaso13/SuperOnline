@@ -28,6 +28,6 @@ public class Otros extends NoPerecedero{
     public String volcar(){return super.volcar();}
     public void imprimir(){
         super.imprimir();
-        System.out.println("Categoría: "+ categoria);
+        System.out.println(", Categoría: "+ categoria);
     }
 }

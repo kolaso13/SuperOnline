@@ -17,13 +17,16 @@ public class Herramienta extends NoPerecedero implements Enviable {
 
     @Override
     public boolean envioFragil() {
-        return Enviable.super.envioFragil();
+        return false;
     }
     @Override
     public double tarifaEnvio() {
-        return Enviable.super.tarifaEnvio();
+        return 0.00;
     }
     public String volcar(){return super.volcar();}
-    public void imprimir(){super.imprimir();}
+    public void imprimir(){
+        super.imprimir();
+        System.out.println(", Herramienta");
+    }
     public void imprimirEnvio(){super.imprimirEnvio();}
 }

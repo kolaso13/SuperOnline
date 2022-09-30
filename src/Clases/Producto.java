@@ -19,24 +19,14 @@ public abstract class Producto {
     }
 
     public Producto(Scanner in){
-        //Scanner codigo
-        System.out.println("Introduce el código:");
-        while(true){
-            try{
-//                codigo = Inventario.tamaño()+1;
-                codigo = in.nextInt();
-                break;
-            }catch(Exception e){
-                System.out.println("El codigo introducido es erroneo, introduce uno correcto");
-                in.nextLine();
-            }
-        }
+        codigo = Inventario.tamaño()+1;
 
         //Scanner nombre
         System.out.println("Introduce el nombre:");
         while (true){
             try{
-                nombre = String.valueOf(in.nextInt());
+
+                nombre = in.nextLine();
                 break;
             }catch (Exception e){
                 System.out.println("El nombre introducido es erroneo, introduce uno correcto");
@@ -111,7 +101,7 @@ public abstract class Producto {
     public double calcularPrecioIVA(){return (precio * getIva()) + precio;}
 
     public void imprimir(){
-        System.out.println("Producto número: "+codigo+", Nombre del producto: "+nombre+", Precio del producto: "+precio+", Cantidad: "+cantidad+", Peso: "+peso);
+        System.out.print("Producto número: "+codigo+", Nombre del producto: "+nombre+", Precio del producto: "+precio+", Cantidad: "+cantidad+", Peso: "+peso);
     }
 
     public void imprimirEnvio(){
